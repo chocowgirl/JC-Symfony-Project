@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+Edit run
+
+	<style>
+        .homebtn {
+			background-color:#a0a0a0;
+			width : 30px;
+			height : 30px;
+			border-radius: 15px;
+			text-align:center;
+			border-color: dark-gray;
+			border-style: solid;
+			border-width: 1px;
+		}
+
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .delete-btn:hover {
+            background-color: #ff3333;
+        }
+	</style>
+
+
+
+{{ form_start (form) }}
+{{ form_widget (form) }}
+
+
+
+<input type="submit" class="btn" value="Submit Edit" />
+{{ form_end (form) }}
+
+<!-- Delete button that points to the delete route -->
+<form method="post" action="{{ path('delete_activity', {'id': form.vars.value.id}) }}" onsubmit="return confirm('Are you sure you want to delete this run? This action cannot be undone.');">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="delete-btn">Delete Run 🗑️</button>
+</form>
+
+
+	<div class="homebtn">
+		<a href="{{ path('app_welcome')}}">🏠</a>
+	<div>
+
+{% endblock %}

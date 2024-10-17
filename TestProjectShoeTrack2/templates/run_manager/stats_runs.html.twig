@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+	<h1>Search Runs</h1>
+
+
+	{{ form_start(form) }}
+		{{ form_row(form.startDate) }}
+		{{ form_row(form.endDate) }}
+		{{ form_row(form.shoe) }}
+		<button type="submit">Search</button>
+
+
+		{% if totalRuns > 0 %}
+			<h2>Results</h2>
+			<p>Total Runs: {{ totalRuns }}</p>
+			<p>Total Distance: {{ totalDistance }} km</p>
+			<p>Average Distance per Run: {{ averageDistance }} km</p>
+			<p>Average Speed per Km: {{ averageSpeedPerKm }} minutes/km</p>
+
+			{# <ul>
+				{% for activity in activities %}
+					<li>{{ activity.activityDate|date('Y-m-d') }} - {{ activity.activityDistanceKm }} km - {{ activity.activityChronoMin }} minutes</li>
+				{% endfor %}
+			</ul> #}
+		{% else %}
+			<p>No activities found for the selected period.</p>
+		{% endif %}
+	{{ form_end(form) }}
+	{{ dump(test) }}
+
+{% endblock %}
+
+
+{# Add new run
+
+	<style>
+        .homebtn {
+			background-color:#a0a0a0;
+			width : 30px;
+			height : 30px;
+			border-radius: 15px;
+			text-align:center;
+			border-color: dark-gray;
+			border-style: solid;
+			border-width: 1px;
+		}
+	</style>
+
+
+
+{{ form_start (form) }}
+{{ form_widget (form) }}
+
+
+
+
+
+<input type="submit" class="btn" value="Envoyer" />
+{{ form_end (form) }}
+
+	<div class="homebtn">
+		<a href="{{ path('app_welcome')}}">🏠</a>
+	<div> #}
+
+{# {% endblock %} #}

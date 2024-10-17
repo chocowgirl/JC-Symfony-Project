@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome Controller! {% endblock %}
+
+{% block body %}
+{# {% include '/includes/nav.html.twig' %} #}
+<style>
+    /* General styling for the body */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* Container for the welcome screen */
+    .welcome-container {
+        background-color: #f0f0f0;
+        width: 400px;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Welcome header styling */
+    .welcome-header {
+        background: linear-gradient(90deg, #ff5f57, #ff8a65);
+        padding: 20px;
+        border-radius: 15px 15px 0 0;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .welcome-header .icon {
+        font-size: 30px;
+        margin-right: 10px;
+    }
+
+    /* Main action icons and links */
+    .action-container {
+        margin: 20px 0;
+    }
+
+    .action-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffe0b2;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        margin: 10px auto;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .action-item img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .action-item:hover {
+        background-color: #ff8a65;
+    }
+
+    .action-text {
+        font-size: 16px;
+        color: #ff5f57;
+        margin-top: 10px;
+    }
+
+    /* Button styling for logout */
+    .logout-btn {
+        background-color: #757575;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .logout-btn img {
+        width: 16px;
+        height: 16px;
+        margin-left: 5px;
+    }
+</style>
+
+{# /* <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style> */ #}
+{# <div class="example-wrapper">
+    <h1>🏠 WELCOME, {{ app.user.name }}!</h1>
+
+    What would you like to do today?
+    <ul>
+        <li><a href="{{ path ('app_run_manager') }}">Access run manager</a></li>
+        <br>
+        <li><a href="{{ path ('app_shoe_manager') }}">Access shoe manager</a></li>
+    </ul>
+</div>
+
+    {% if app.user %}
+        <div class="mb-3">
+            <a href="{{ path('app_logout') }}"><button class="logout">Logout</button></a>
+        </div>
+    {% endif %} #}
+    <div class="welcome-container">
+    <!-- Welcome Header -->
+    <div class="welcome-header">
+        <span class="icon">🏠</span>
+        WELCOME, {{ app.user.name }}!
+    </div>
+
+    <!-- Main action section -->
+    <div class="action-container">
+        <div class="action-item" onclick="window.location.href='{{ path('app_run_manager') }}'">
+            <img src="/path/to/run-icon.png" alt="Access Run Manager">
+        </div>
+        {# <div class="action-text">Access run manager</div> #}
+
+        <div class="action-item" onclick="window.location.href='{{ path('app_shoe_manager') }}'">
+            <img src="/path/to/shoe-icon.png" alt="Access Shoe Manager">
+        </div>
+        {# <div class="action-text">Access shoe manager</div> #}
+    </div>
+
+    <!-- Logout button -->
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}" class="logout-btn">
+            Logout 
+            {# <img src="/path/to/logout-icon.png" alt="Logout Icon"> #}
+        </a>
+    {% endif %}
+</div>
+{% endblock %}
