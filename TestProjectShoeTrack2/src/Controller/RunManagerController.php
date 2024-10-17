@@ -196,7 +196,7 @@ class RunManagerController extends AbstractController
 
         // dd($totalRuns);
         // dd($averageDistance);
-        dd($averageSpeedPerKm);
+        // dd($averageSpeedPerKm);
         // Render the form and results
             return $this->render('run_manager/stats_runs.html.twig', [
                 'form' => $form->createView(),
@@ -205,7 +205,7 @@ class RunManagerController extends AbstractController
                 'totalDistance' => $totalDistance,
                 'averageDistance' => $averageDistance,
                 'averageSpeedPerKm' => $averageSpeedPerKm,
-                'test' => ['t', 'es'],
+                // 'test' => ['t', 'es'],
             ]);
         }
 
@@ -217,7 +217,7 @@ class RunManagerController extends AbstractController
             'totalDistance' => $totalDistance,
             'averageDistance' => $averageDistance,
             'averageSpeedPerKm' => $averageSpeedPerKm,
-            'test' => 'test',
+            // 'test' => 'test',
         ]);
     
 
