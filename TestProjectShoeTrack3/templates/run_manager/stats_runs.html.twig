@@ -1,0 +1,155 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #f0f0f0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+
+	.welcome-container {
+		background-color: #f0f0f0;
+		width: 400px;
+		border-radius: 15px;
+		padding: 20px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		text-align: center;
+	}
+
+	 /* Welcome header styling */
+    .welcome-header {
+        background: linear-gradient(90deg, #ff5f57, #ff8a65);
+        padding: 20px;
+        border-radius: 15px 15px 0 0;
+        color: grey;
+        font-size: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .welcome-header .icon {
+        font-size: 30px;
+        margin-right: 10px;
+    }
+
+	.welcome-header h1{
+		color: white;
+	}
+
+	/* .welcome-container {
+		
+
+
+
+	} */
+
+</style>
+
+
+{# <div class="action-container">
+	<div class="nav">
+		<div class="navItem">
+			<a href="{{ path('app_welcome') }}">🏠 Home Screen</a>
+		</div>
+		<div class="navItem" onclick="window.location.href='{{ path('app_run_manager') }}'">
+			<a href="{{ path('app_run_manager') }}">🏃‍➡️ Access Run Manager</a>
+		</div>
+		<div class="navItem" onclick="window.location.href='{{ path('app_shoe_manager') }}'">
+			<a href="{{ path('app_shoe_manager') }}">👟 Access Shoe Manager</a>
+		</div>
+	</div> #}
+	<div class="welcome-container">
+		<div class="welcome-header">
+		{# <div class="action-container"> #}
+			<div class="nav">
+				<div class="navItem">
+					<a href="{{ path('app_welcome') }}">🏠 Home Screen</a>
+				</div>
+				<div class="navItem" onclick="window.location.href='{{ path('app_run_manager') }}'">
+					<a href="{{ path('app_run_manager') }}">🏃‍➡️ Access Run Manager</a>
+				</div>
+				<div class="navItem" onclick="window.location.href='{{ path('app_shoe_manager') }}'">
+					<a href="{{ path('app_shoe_manager') }}">👟 Access Shoe Manager</a>
+				</div>
+			</div>
+			<h1>🔍 Search Runs</h1>
+		</div>
+		<div class="action-container">
+			{{ form_start(form) }}
+				{{ form_row(form.startDate) }}
+				{{ form_row(form.endDate) }}
+				{{ form_row(form.shoe) }}
+				<button type="submit">Search</button>
+
+
+				{% if totalRuns > 0 %}
+					<h2>Results</h2>
+					<p>Total Runs: {{ totalRuns }}</p>
+					<p>Total Distance: {{ totalDistance }} km</p>
+					<p>Average Distance per Run: {{ averageDistance }} km</p>
+					<p>Average Speed per Km: {{ averageSpeedPerKm }} minutes/km</p>
+
+					{# <ul>
+						{% for activity in activities %}
+							<li>{{ activity.activityDate|date('Y-m-d') }} - {{ activity.activityDistanceKm }} km - {{ activity.activityChronoMin }} minutes</li>
+						{% endfor %}
+					</ul> #}
+				{% else %}
+					<p>No activities found for the selected period.</p>
+				{% endif %}
+			{{ form_end(form) }}
+			{# {{ dump(test) }} #}
+		</div>
+
+	</div>
+
+
+
+
+
+{# </div> #}
+	</div>
+	{# <h1>Search Runs</h1> #}
+
+
+
+{% endblock %}
+
+
+{# Add new run
+
+	<style>
+        .homebtn {
+			background-color:#a0a0a0;
+			width : 30px;
+			height : 30px;
+			border-radius: 15px;
+			text-align:center;
+			border-color: dark-gray;
+			border-style: solid;
+			border-width: 1px;
+		}
+	</style>
+
+
+
+{{ form_start (form) }}
+{{ form_widget (form) }}
+
+
+
+
+
+<input type="submit" class="btn" value="Envoyer" />
+{{ form_end (form) }}
+
+	<div class="homebtn">
+		<a href="{{ path('app_welcome')}}">🏠</a>
+	<div> #}
+
+{# {% endblock %} #}
