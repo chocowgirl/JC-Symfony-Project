@@ -18,35 +18,36 @@
 		border-radius: 15px;
 		padding: 20px;
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		text-align: center;
+		text-align: left;
 	}
 
 	 /* Welcome header styling */
     .welcome-header {
         background: linear-gradient(90deg, #ff5f57, #ff8a65);
         padding: 20px;
-        border-radius: 15px 15px 0 0;
+        border-radius: 15px 15px 15px 15px;
         color: grey;
-        font-size: 24px;
+        font-size: 0.9em;
         font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    .welcome-header .icon {
-        font-size: 30px;
-        margin-right: 10px;
+        /* text-transform: uppercase; */
     }
 
 	.welcome-header h1{
 		color: white;
 	}
 
-	/* .welcome-container {
-		
+	.action-container {
+		background-color: #f0f0f0;
+		border-radius: 10px;
+	}
 
+	.navItem {
+		font-size: 0.7em;
+	}
 
-
-	} */
+	.response {
+		color:black;
+	}
 
 </style>
 
@@ -71,39 +72,39 @@
 					<a href="{{ path('app_welcome') }}">🏠 Home Screen</a>
 				</div>
 				<div class="navItem" onclick="window.location.href='{{ path('app_run_manager') }}'">
-					<a href="{{ path('app_run_manager') }}">🏃‍➡️ Access Run Manager</a>
+					<a href="{{ path('app_run_manager') }}">🏃‍➡️ Run Manager</a>
 				</div>
 				<div class="navItem" onclick="window.location.href='{{ path('app_shoe_manager') }}'">
-					<a href="{{ path('app_shoe_manager') }}">👟 Access Shoe Manager</a>
+					<a href="{{ path('app_shoe_manager') }}">👟 Shoe Manager</a>
 				</div>
 			</div>
 			<h1>🔍 Search Runs</h1>
-		</div>
-		<div class="action-container">
-			{{ form_start(form) }}
-				{{ form_row(form.startDate) }}
-				{{ form_row(form.endDate) }}
-				{{ form_row(form.shoe) }}
-				<button type="submit">Search</button>
+				{{ form_start(form) }}
+					{{ form_row(form.startDate) }}
+					{{ form_row(form.endDate) }}
+					{{ form_row(form.shoe) }}
+					<button type="submit">Search</button>
 
 
-				{% if totalRuns > 0 %}
-					<h2>Results</h2>
-					<p>Total Runs: {{ totalRuns }}</p>
-					<p>Total Distance: {{ totalDistance }} km</p>
-					<p>Average Distance per Run: {{ averageDistance }} km</p>
-					<p>Average Speed per Km: {{ averageSpeedPerKm }} minutes/km</p>
+			<div class="action-container">
+					{% if totalRuns > 0 %}
+						<h4>Results</h4>
+						<p>Total Runs:<br><span class="response"> {{ totalRuns }}</span></p>
+						<p>Total Distance:<br><span class="response"> {{ totalDistance }} km</span></p>
+						<p>Average Distance/Run:<br><span class="response"> {{ averageDistance }} km</span></p>
+						<p>Average Speed per Km:<br><span class="response"> {{ averageSpeedPerKm | number_format(2)}} minutes/km</span></p>
 
-					{# <ul>
-						{% for activity in activities %}
-							<li>{{ activity.activityDate|date('Y-m-d') }} - {{ activity.activityDistanceKm }} km - {{ activity.activityChronoMin }} minutes</li>
-						{% endfor %}
-					</ul> #}
-				{% else %}
-					<p>No activities found for the selected period.</p>
-				{% endif %}
-			{{ form_end(form) }}
-			{# {{ dump(test) }} #}
+						{# <ul>
+							{% for activity in activities %}
+								<li>{{ activity.activityDate|date('Y-m-d') }} - {{ activity.activityDistanceKm }} km - {{ activity.activityChronoMin }} minutes</li>
+							{% endfor %}
+						</ul> #}
+					{% else %}
+						<p>No activities found for the selected period.</p>
+					{% endif %}
+				{{ form_end(form) }}
+				{# {{ dump(test) }} #}
+			</div>
 		</div>
 
 	</div>
