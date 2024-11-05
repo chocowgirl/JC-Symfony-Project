@@ -7,8 +7,8 @@
 <style>
     /* General styling for the body */
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
+        /* font-family: Arial, sans-serif; */
+        /* background-color: #f0f0f0; */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -33,6 +33,7 @@
         color: white;
         font-size: 24px;
         font-weight: bold;
+        text-align: left;
         /* text-transform: uppercase; */
     }
 
@@ -44,6 +45,8 @@
     /* Main action icons and links */
     .action-container {
         margin: 20px 0;
+        display : flex;
+        flex-direction : column;
     }
 
     .action-item {
@@ -60,8 +63,9 @@
     }
 
     .action-item img {
-        width: 60px;
-        height: 60px;
+        width: 90px;
+        height: 90px;
+        /* margin: 3px; */
     }
 
     .action-item:hover {
@@ -120,21 +124,26 @@
     <!-- Welcome Header -->
         <div class="welcome-header">
             <p><span class="icon">🏠</span>
-            WELCOME, {{ app.user.name }}!</p>
+            Welcome, {{ app.user.name }}!</p>
             <p>What would you like to do today?</p>
         </div>
 
     <!-- Main action section -->
         <div class="action-container">
             <div class="action-item" onclick="window.location.href='{{ path('app_run_manager') }}'">
-                <img src="/path/to/run-icon.png" alt="Access Run Manager">
+                <img class = "runManIcon" src="{{ asset('pubimages/running.png') }}" alt="Access Run Manager">
+                {# <img src="/path/to/run-icon.png" alt="Access Run Manager"> #}
+                {# <div class="action-text">Access run manager</div> #}
             </div>
-            {# <div class="action-text">Access run manager</div> #}
-
+            <div class="action-text">Access run manager</div>
+        <div>
+        <br>
+        <div class="action-container">
             <div class="action-item" onclick="window.location.href='{{ path('app_shoe_manager') }}'">
-                <img src="/path/to/shoe-icon.png" alt="Access Shoe Manager">
+                <img class = "shoeManIcon" src="{{ asset('pubimages/shoes.png') }}" alt="Access Shoe Manager">
+                {# <img src="/path/to/shoe-icon.png" alt="Access Shoe Manager"> #}
             </div>
-            {# <div class="action-text">Access shoe manager</div> #}
+            <div class="action-text">Access shoe manager</div>
         </div>
 
     <!-- Logout button -->
