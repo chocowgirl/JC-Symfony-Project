@@ -1,3 +1,24 @@
 body {
-    background-color: skyblue;
+font-family: Arial, sans-serif;
+background-color: #f0f0f0;
+/* display: flex; */
+/* justify-content: center;
+align-items: center;
+height: 100vh; */
 }
+
+.runnerslogo {
+    max-width: 12%;
+    height: auto;
+}
+
+/* .welcome-container {
+background-color: #f0f0f0;
+width: 400px;
+border-radius: 15px;
+padding: 20px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+text-align: center;
+} */
+
+

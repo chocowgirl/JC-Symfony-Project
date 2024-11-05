@@ -33,7 +33,7 @@
         color: white;
         font-size: 24px;
         font-weight: bold;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
     }
 
     .welcome-header .icon {
@@ -119,8 +119,9 @@
     <div class="welcome-container">
     <!-- Welcome Header -->
         <div class="welcome-header">
-            <span class="icon">🏠</span>
-            WELCOME, {{ app.user.name }}!
+            <p><span class="icon">🏠</span>
+            WELCOME, {{ app.user.name }}!</p>
+            <p>What would you like to do today?</p>
         </div>
 
     <!-- Main action section -->
