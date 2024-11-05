@@ -14,14 +14,14 @@
         align-items: center;
         height: 100vh;
     }
-    
+
     /* Form container */
     form {
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: #e0e0e0;
-        border-radius: 10px;
+        border-radius: 0px 0px 10px 10px;
         padding: 20px;
         max-width: 400px;
         margin: 0 auto;
@@ -143,15 +143,22 @@
 
     /* Welcome header styling */
     .welcome-header {
-        background: linear-gradient(90deg, #ff5f57, #ff8a65);
+        /* background: linear-gradient(90deg, #ff5f57, #ff8a65); */
+        background:white;
         padding: 20px;
         border-radius: 15px 15px 0 0;
         color: white;
         font-size: 24px;
         font-weight: bold;
-        text-align: left;
+        /* text-align: left; */
         /* text-transform: uppercase; */
+        justify-content: center;
     }
+
+    /* .runnerslogo {
+        width:90%;
+        height:auto;
+    } */
 
 </style>
 
@@ -161,7 +168,7 @@
         <!-- Welcome Header -->
         <div class="welcome-header">
             <img class = "runnerslogo" src="{{ asset('pubimages/rb_2150985777.png') }}" alt="Logo">
-            <p>What would you like to do today?</p>
+            {# <p>What would you like to do today?</p> #}
         </div>
             
             {# <br> #}
