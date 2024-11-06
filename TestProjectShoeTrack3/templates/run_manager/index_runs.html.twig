@@ -4,7 +4,6 @@
 {% endblock %}
 
 {% block body %}
-	Run manager
 
 	<style>
 		body{
@@ -12,10 +11,10 @@
             background-color: #f0f0f0; */
             display: flex;
             justify-content: center;
-            align-items: center;
+            /* align-items: center; */
             height: 100vh;
 		}
-		
+
 		.runlegend {
 			display: flex;
 			padding:10px
@@ -36,6 +35,7 @@
 
 		.container {
 			display: flex;
+			flex:1;
 			flex-wrap: wrap;
 			background-color: #f0f0f0;
 			border-radius: 15px;
@@ -48,6 +48,7 @@
 			font-family: Arial, sans-serif;
 			margin:10px;
 		}
+
 		.item {
 			background-color: #a0a0a0;
 			border-radius: 10px;
@@ -57,6 +58,7 @@
 			min-width: 80px;
 			color:white;
 		}
+
 		.item-large {
 			flex: 2;
 			background: linear-gradient(90deg, orange, red);
@@ -67,6 +69,7 @@
 			align-items: center;
 			justify-content: center;
 		}
+
 		.notes {
 			background-color: #a0a0a0;
 			border-radius: 10px;
@@ -104,6 +107,7 @@
 			width: 500px;
 			height: 50
 		}
+
 		.homebtn {
 			background-color:#a0a0a0;
 			width : 30px;
@@ -130,51 +134,54 @@
 		
 	</style>
 	
-	<div class='btnContainer'>
-		<div class="homebtn">
-			<a href="{{ path('app_welcome')}}">🏠</a>
-		<div>
 
-		<div class="createRunBtn">
-			<a href="{{ path ('create_activity') }}">Add new run</a>
+	{# <div class="welcome-container"> #}
+		<div class='btnContainer'>
+			<div class="homebtn">
+				<a href="{{ path('app_welcome')}}">🏠</a>
+			<div>
+
+			<div class="createRunBtn">
+				<a href="{{ path ('create_activity') }}">Add new run</a>
+			</div>
+
+			<div class="runStatsBtn">
+				<a href="{{ path ('search_activities') }}">Run Statistics</a>
+			</div>
 		</div>
 
-		<div class="runStatsBtn">
-			<a href="{{ path ('search_activities') }}">Run Statistics</a>
+		<div class="runlegend">
+			<div class="runlegendItem">Date</div>
+			<div class="runlegendItem">Dist.</div>
+			<div class="runlegendItem">Chrono</div>
+			<div class="runlegendItem">Shoe</div>
 		</div>
-	</div>
+		{% for activity in activities %}
 
-	<div class="runlegend">
-		<div class="runlegendItem">Date</div>
-		<div class="runlegendItem">Dist.</div>
-		<div class="runlegendItem">Chrono</div>
-		<div class="runlegendItem">Shoe</div>
-	</div>
-	{% for activity in activities %}
-
-		<div class="container">
-			<div class="item">
-				{{ activity.activityDate.format("Y/m/d") }}
+			<div class="container">
+				<div class="item">
+					{{ activity.activityDate.format("Y/m/d") }}
+				</div>
+				<div class="item">
+					{{ activity.activityDistanceKm }}
+				</div>
+				<div class="item">
+					{{ activity.activityChronoMin }}
+				</div>
+				{# {{ dump (activity.shoepairUsed)}} #}
+				{# {{ dump (activity.activityDate)}} #}
+				<div class="item-large">
+					{{ activity.shoepairUsed.nameBrandModel }}
+				</div>
+				<div class="edit-button">
+					{# <button>edit</button> #}
+					<a href="{{ path('update_activity', {id: activity.id} )}}">edit</a>
+				</div>
+				<div class="notes">
+					{{activity.activityNote }}
+				</div>
 			</div>
-			<div class="item">
-				{{ activity.activityDistanceKm }}
-			</div>
-			<div class="item">
-				{{ activity.activityChronoMin }}
-			</div>
-			{# {{ dump (activity.shoepairUsed)}} #}
-			{# {{ dump (activity.activityDate)}} #}
-			<div class="item-large">
-				{{ activity.shoepairUsed.nameBrandModel }}
-			</div>
-			<div class="edit-button">
-				{# <button>edit</button> #}
-				<a href="{{ path('update_activity', {id: activity.id} )}}">edit</a>
-			</div>
-			<div class="notes">
-				{{activity.activityNote }}
-			</div>
-		</div>
+		{# </div> #}
 
 	{% endfor %}
 

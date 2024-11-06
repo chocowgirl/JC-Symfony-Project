@@ -15,13 +15,17 @@
         height: 100vh;
     }
 
+    img {
+        justify-self:center;
+    }
+
     /* Form container */
     form {
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: #e0e0e0;
-        border-radius: 0px 0px 10px 10px;
+        border-radius: 10px;
         padding: 20px;
         max-width: 400px;
         margin: 0 auto;
@@ -30,8 +34,8 @@
     /* Input fields and labels */
     label {
         display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
+        margin-top: 15px;
+        /* font-weight: bold; */
     }
 
     input[type="text"], textarea, select {
@@ -50,7 +54,7 @@
     }
 
     /* Form section titles */
-    .form-section {
+    /* .form-section {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -62,7 +66,7 @@
         padding: 10px;
         margin-bottom: 20px;
         width: 100%;
-    }
+    } */
 
     /* Submit button styling */
     .btn {
@@ -74,62 +78,37 @@
         font-weight: bold;
         text-align: center;
         border: none;
-        border-radius: 10px;
+        border-radius: 25px;
         cursor: pointer;
+        margin-top:20px;
     }
 
     .btn:hover {
         background-color: #d32f2f;
     }
-
-    /* Home button styling */
-    .homebtn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
+    
+    h1, h3 {
+        color:orange;
     }
 
-    .homebtn a {
-        display: inline-block;
-        background-color: #a0a0a0;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 40px;
+/* sign up button */
+    .toregistration {
+        width: 40%;
+        padding: 15px;
+        background-color: #FF8d21;
         color: white;
-        font-size: 20px;
-        text-decoration: none;
-    }
-
-    /* Icon styling for top section */
-    .header-icons {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px;
-        background-color: #ff5f57;
-        border-radius: 10px;
-        color: white;
-        font-size: 24px;
+        font-size: 18px;
         font-weight: bold;
-        margin-bottom: 30px;
-        max-width: 400px;
-        margin: 0 auto;
+        text-align: center;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
     }
 
-    .header-icons div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 40px;
-        border-radius: 45%;
-        background-color: #ffffff;
-        color: #ff5f57;
-        font-size: 24px;
-        margin-right: 10px;
+    .toregistration:hover {
+        background-color: #f77d11;
     }
+    
 
     /* Container for the welcome screen */
     .welcome-container {
@@ -144,7 +123,7 @@
     /* Welcome header styling */
     .welcome-header {
         /* background: linear-gradient(90deg, #ff5f57, #ff8a65); */
-        background:white;
+        background:#f0f0f0;
         padding: 20px;
         border-radius: 15px 15px 0 0;
         color: white;
@@ -152,17 +131,23 @@
         font-weight: bold;
         /* text-align: left; */
         /* text-transform: uppercase; */
+        display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items:center;
+        height: 200px;
     }
 
-    /* .runnerslogo {
-        width:90%;
-        height:auto;
-    } */
+    .welcome-header img {
+        max-width: 95%; /* Scale the image to 80% of the container width */
+        max-height: 195px; /* Limit the height for better control */
+        margin: auto; /* Center the image */
+        align-self: center; /* Center within the flex container */
+    }
+
+
 
 </style>
-
-    <!-- Top section with edit shoe icons -->
 
     <div class="welcome-container">
         <!-- Welcome Header -->
@@ -170,10 +155,8 @@
             <img class = "runnerslogo" src="{{ asset('pubimages/rb_2150985777.png') }}" alt="Logo">
             {# <p>What would you like to do today?</p> #}
         </div>
-            
-            {# <br> #}
-            {# <img class = "runnerslogo" src="{{ asset('pubimages/rb_2150985777.png') }}" alt="Logo"> #}
-
+        <h1>SOLEMATE</h1>
+        <h3>TAKING CARE OF YOUR FOOTWEAR</h3>
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -185,8 +168,8 @@
                 </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal">SOLEMATE</h1>
-            <h3>TAKING CARE OF YOUR FOOTWEAR</h3>
+            {# <h1>SOLEMATE</h1>
+            <h3>TAKING CARE OF YOUR FOOTWEAR</h3> #}
             <label for="username">Email</label>
             <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
             <br>
@@ -211,7 +194,9 @@
                 Login
             </button>
         </form>
-        <h4>Don't have an account?</h4>
-        <a href="{{ path('app_register') }}"><button class"toregistration">Sign up!</button></a>
+        <div class= "bottom">
+            <h4>Don't have an account?</h4>
+            <a href="{{ path('app_register') }}"><button class="toregistration">Sign up!</button></a>
+        </div>
     </div>
 {% endblock %}
