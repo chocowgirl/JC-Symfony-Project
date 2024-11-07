@@ -3,35 +3,222 @@
 
 {% block body %}
 
-Run Stats
-
 	<style>
-        .homebtn {
-			background-color:#a0a0a0;
-			width : 30px;
-			height : 30px;
+		/* General styling for the body */
+		body {
+			/* font-family: Arial, sans-serif; */
+			/* background-color: #f0f0f0; */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 105vh;
+		}
+
+		/* img {
+			justify-self:center;
+		} */
+
+		/* Form container */
+		form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #e0e0e0;
+			border-radius: 10px;
+			padding: 20px;
+			max-width: 400px;
+			margin: 0 auto;
+		}
+
+		/* Input fields and labels */
+		label {
+			display: block;
+			margin-top: 15px;
+			/* font-weight: bold; */
+		}
+
+		/* input[type="text"], textarea, select {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			background-color: #fff;
+			font-size: 16px;
+			text-align: center;
+		} */
+
+		textarea {
+			height: 100px;
+		}
+
+		input, textarea, select {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			background-color: #fff;
+			font-size: 16px;
+			text-align: center;
+		}
+
+		/* Form section titles */
+		/* .form-section {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 18px;
+			font-weight: bold;
+			color: white;
+			background-color: #ff5f57;
+			border-radius: 10px;
+			padding: 10px;
+			margin-bottom: 20px;
+			width: 100%;
+		} */
+
+		/* Submit button styling */
+		.btn {
+			width: 100%;
+			padding: 15px;
+			background-color: #e53935;
+			color: white;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			border: none;
+			border-radius: 25px;
+			cursor: pointer;
+			margin-top:20px;
+		}
+
+		.btn:hover {
+			background-color: #d32f2f;
+		}
+		
+		h1, h3 {
+			color:orange;
+		}
+
+		
+		/* Container for the welcome screen */
+		.welcome-container {
+			background-color: #f0f0f0;
+			width: 400px;
 			border-radius: 15px;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			text-align: center;
+		}
+
+		/* Welcome header styling */
+		.welcome-header {
+			background: linear-gradient(90deg, #ff5f57, #ff8a65);
+			padding: 20px;
+			border-radius: 15px;
+			color: white;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: left;
+			/* text-transform: uppercase; */
+		}
+		/* Welcome header styling
+		.welcome-header {
+			background: linear-gradient(90deg, #ff5f57, #ff8a65);
+			background:#f0f0f0;
+			padding: 20px;
+			border-radius: 15px 15px 0 0;
+			color: white;
+			font-size: 24px;
+			font-weight: bold;
+			/* text-align: left; */
+			/* text-transform: uppercase; */
+			/* display: flex; */
+			/* flex-direction: column; */
+			/* justify-content: center;
+			align-items:center;
+			height: 200px; */
+		/* } */
+
+		/* .welcome-header img {
+			max-width: 95%; /* Scale the image to 80% of the container width */
+			/* max-height: 195px; Limit the height for better control */
+			/* margin: auto; Center the image */
+			/* align-self: center; Center within the flex container */
+		/* } */
+
+        .homebtn {
+			background-color:red;
+			width : 50px;
+			height : 50px;
+			border-radius: 25px;
 			text-align:center;
 			border-color: dark-gray;
 			border-style: solid;
 			border-width: 1px;
 		}
+
+        .homeButton {
+			background-color:#999999;
+			width : 50px;
+			height : 50px;
+			border-radius: 25px;
+			text-align:center;
+			border-color: dark-gray;
+			border-style: solid;
+			border-width: 1px;
+		}
+
+		.homeIcon {
+			width:30px;
+		}
+
+		p {
+			color:grey;
+
+		}
+
 	</style>
 
+<div class="welcome-container">
+
+    <div class="welcome-header">
+		<button class="homeButton">
+			<a href="{{ path('app_welcome')}}">
+				<img class="homeIcon" src="{{ asset('pubimages/home-2.svg') }}" alt = "Go to Homescreen">
+			</a>
+		</button>
+		{% if form.shoepairUsed.vars.choices is empty %}
+			<div class="alert alert-warning">
+				{# <button class="homeButton">
+					<a href="{{ path('app_welcome')}}">
+						<img class="homeIcon" src="{{ asset('pubimages/home-2.svg') }}" alt = "Go to Homescreen">
+					</a>
+				</button> #}
+				<p>You need to have at least one pair of shoes in the Shoe Manager before you can log a new run.</p>
+				<a href="{{ path('app_shoe_manager') }}" class="btn btn-primary">Go to Shoe Manager</a>
+			</div>
+		{% else %}
+        <h2>CREATE NEW RUN</h2>
+	</div>	
 
 
-{{ form_start (form) }}
-{{ form_widget (form) }}
+
+		{{ form_start (form) }}
+		{{ form_widget (form) }}
 
 
 
 
 
-<input type="submit" class="btn" value="Submit Query" />
-{{ form_end (form) }}
-
-	<div class="homebtn">
-		<a href="{{ path('app_welcome')}}">🏠</a>
-	<div>
+		<input type="submit" class="btn" value="Enter Run" />
+		{{ form_end (form) }}
+	{% endif %}
+	{# <div class="homebtn"> #}
+{# 	
+		<button class="homeButton"><a href="{{ path('app_welcome')}}"><img class="homeIcon" src="{{ asset('pubimages/home-2.svg') }}" alt = "Go to Homescreen"></a></button> #}
+	{# <div> #}
+</div>
 
 {% endblock %}

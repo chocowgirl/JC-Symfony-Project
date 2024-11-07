@@ -3,20 +3,165 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>CREATE YOUR ACCOUNT</h1>
 
-    {{ form_errors(registrationForm) }}
+<style>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row (registrationForm.name)}}
-        {{ form_row (registrationForm.birthdate)}}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {# {{ form_row(registrationForm.agreeTerms) }} #}
-        {# {{ form_row (registrationForm.name)}} #}
-        {# {{ form_row (registrationForm.birthdate)}} #}
-        <button type="submit" class="btn">Create Account</button>
-    {{ form_end(registrationForm) }}
+    /* General styling for the body */
+    body {
+        /* font-family: Arial, sans-serif; */
+        /* background-color: #f0f0f0; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    /* img {
+        justify-self:center;
+    } */
+
+    /* Form container */
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Input fields and labels */
+    label {
+        display: block;
+        margin-top: 15px;
+        /* font-weight: bold; */
+    }
+
+    /* input[type="text"], textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        font-size: 16px;
+        text-align: center;
+    } */
+
+    input, textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    textarea {
+        height: 100px;
+    }
+
+    /* Form section titles */
+    /* .form-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+        background-color: #ff5f57;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 100%;
+    } */
+
+    /* Submit button styling */
+    .btn {
+        width: 100%;
+        padding: 15px;
+        background-color: #e53935;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        margin-top:20px;
+    }
+
+    .btn:hover {
+        background-color: #d32f2f;
+    }
+    
+    h1, h3 {
+        color:orange;
+    }
+
+    
+    /* Container for the welcome screen */
+    .welcome-container {
+        background-color: #f0f0f0;
+        width: 400px;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    /* Welcome header styling */
+    .welcome-header {
+        /* background: linear-gradient(90deg, #ff5f57, #ff8a65); */
+        background:#f0f0f0;
+        padding: 20px;
+        border-radius: 15px 15px 0 0;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        /* text-align: left; */
+        /* text-transform: uppercase; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:center;
+        height: 200px;
+    }
+
+    .welcome-header img {
+        max-width: 95%; /* Scale the image to 80% of the container width */
+        max-height: 195px; /* Limit the height for better control */
+        margin: auto; /* Center the image */
+        align-self: center; /* Center within the flex container */
+    }
+
+
+
+</style>
+
+<div class="welcome-container">
+    <div class="welcome-header">
+        <img class = "runnerslogo" src="{{ asset('pubimages/rb_2150985777.png') }}" alt="Logo">
+        <h3>CREATE YOUR ACCOUNT</h3>
+    </div>
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row (registrationForm.name)}}
+            {{ form_row (registrationForm.birthdate)}}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {# {{ form_row(registrationForm.agreeTerms) }} #}
+            {# {{ form_row (registrationForm.name)}} #}
+            {# {{ form_row (registrationForm.birthdate)}} #}
+            <button type="submit" class="btn">Create Account</button>
+        {{ form_end(registrationForm) }}
+
+</div>
 {% endblock %}

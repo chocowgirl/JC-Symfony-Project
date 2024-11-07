@@ -29,10 +29,11 @@ class ActivityType extends AbstractType
         $user = $this->sec->getUser();
 
         $builder
-            ->add('activityDate', DateType::class, [
-                'widget' => 'choice',
-                'format' => 'yyyy/MM/dd', // Sets the desired format
-            ])
+            ->add('activityDate', DateType::class)
+            // , [
+            //     'widget' => 'choice',
+            //     'format' => 'yyyy/MM/dd', // Sets the desired format
+            // ])
             ->add('activityDistanceKm')
             ->add('activityNote')
             ->add('activityChronoMin')

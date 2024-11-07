@@ -38,7 +38,18 @@
         /* font-weight: bold; */
     }
 
-    input[type="text"], textarea, select {
+    /* input[type="text"], textarea, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        font-size: 16px;
+        text-align: center;
+    } */
+
+    input, textarea, select {
         width: 100%;
         padding: 10px;
         margin-bottom: 15px;
@@ -156,7 +167,7 @@
             {# <p>What would you like to do today?</p> #}
         </div>
         <h1>SOLEMATE</h1>
-        <h3>TAKING CARE OF YOUR FOOTWEAR</h3>
+        <h3>TAKING CARE OF<br>YOUR FOOTWEAR</h3>
         <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

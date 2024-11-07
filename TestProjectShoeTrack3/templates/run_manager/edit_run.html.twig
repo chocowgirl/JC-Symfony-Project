@@ -3,9 +3,15 @@
 
 {% block body %}
 
-Edit run
-
 	<style>
+        body {
+            /* font-family: Arial, sans-serif; */
+            /* background-color: #f0f0f0; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
         form {
         display: flex;
@@ -25,34 +31,45 @@ Edit run
         font-weight: bold;
         }
 
-        input[type="text"], textarea, select {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        background-color: #fff;
-        font-size: 16px;
-        text-align: center;
-        }
+		input, textarea, select {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			background-color: #fff;
+			font-size: 16px;
+			text-align: center;
+		}
 
         textarea {
-        height: 100px;
+            height: 100px;
         }
+
+		/* Container for the welcome screen */
+		.welcome-container {
+			background-color: #f0f0f0;
+			width: 400px;
+			border-radius: 15px;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			text-align: center;
+		}
+
 
         /* Form section titles */
         .form-section {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 18px;
-        font-weight: bold;
-        color: white;
-        background-color: #ff5f57;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 20px;
-        width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff5f57;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
         }
 
         /* Submit button styling */
@@ -65,33 +82,12 @@ Edit run
         font-weight: bold;
         text-align: center;
         border: none;
-        border-radius: 10px;
+        border-radius: 25px;
         cursor: pointer;
         }
 
         .btn:hover {
         background-color: #d32f2f;
-        }
-
-        /* Home button styling */
-        .homebtn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .homebtn a {
-            display: inline-block;
-            background-color: #a0a0a0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            color: white;
-            font-size: 20px;
-            text-decoration: none;
         }
 
         /* Icon styling for top section */
@@ -133,21 +129,40 @@ Edit run
 			border-width: 1px;
 		} */
 
-        /* .delete-btn {
-            background-color: #ff4d4d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-            border-radius: 5px;
+        /* .homebtn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-top: 20px;
         }
 
-        .delete-btn:hover {
-            background-color: #ff3333;
+        .homebtn a {
+            display: inline-block;
+            background-color: #a0a0a0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
         } */
-                /* Submit button styling */
+        .homeButton {
+			background-color:#999999;
+			width : 50px;
+			height : 50px;
+			border-radius: 25px;
+			text-align:center;
+			border-color: dark-gray;
+			border-style: solid;
+			border-width: 1px;
+		}
+
+        .homeIcon {
+			width:30px;
+		}
+
         .delete-btn {
         width: 100%;
         padding: 15px;
@@ -157,39 +172,51 @@ Edit run
         font-weight: bold;
         text-align: center;
         border: none;
-        border-radius: 10px;
+        border-radius: 25px;
         cursor: pointer;
         }
 
         .delete-btn:hover {
         background-color: #f77d11;
         }
+
+        /* Welcome header styling */
+		.welcome-header {
+			background: linear-gradient(90deg, #ff5f57, #ff8a65);
+			padding: 20px;
+			border-radius: 15px;
+			color: white;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: left;
+			/* text-transform: uppercase; */
+		}
 	</style>
 
 <!-- Top section with edit run icons -->
-
-<div class="header-icons">
-    {# <div>✏️</div>
-    <div>🏃‍♂️‍➡️</div> #}
-	✏️ 🏃‍♂️‍➡️ Edit Run
-    <div>
-        <a href="{{ path('app_welcome') }}">🏠</a>
+<div class="welcome-container">
+    <div class="welcome-header">
+        <button class="homeButton">
+            <a href="{{ path('app_welcome')}}">
+                <img class="homeIcon" src="{{ asset('pubimages/home-2.svg') }}" alt = "Go to Homescreen">
+            </a>
+        </button>
+        <h2>EDIT RUN</h2>
     </div>
+
+    {{ form_start (form) }}
+    {{ form_widget (form) }}
+
+
+
+    <input type="submit" class="btn" value="Submit Edit" />
+    {{ form_end (form) }}
+
+    <!-- Delete button that points to the delete route -->
+    <form method="post" action="{{ path('delete_activity', {'id': form.vars.value.id}) }}" onsubmit="return confirm('Are you sure you want to delete this run? This action cannot be undone.');">
+        <input type="hidden" name="_method" value="DELETE">
+        <button class="delete-btn">Delete Run 🗑️</button>
+    </form>
 </div>
-
-{{ form_start (form) }}
-{{ form_widget (form) }}
-
-
-
-<input type="submit" class="btn" value="Submit Edit" />
-{{ form_end (form) }}
-
-<!-- Delete button that points to the delete route -->
-<form method="post" action="{{ path('delete_activity', {'id': form.vars.value.id}) }}" onsubmit="return confirm('Are you sure you want to delete this run? This action cannot be undone.');">
-    <input type="hidden" name="_method" value="DELETE">
-    <button class="delete-btn">Delete Run 🗑️</button>
-</form>
-
 
 {% endblock %}
