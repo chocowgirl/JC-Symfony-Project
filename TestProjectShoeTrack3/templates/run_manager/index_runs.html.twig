@@ -11,16 +11,39 @@
             background-color: #f0f0f0; */
             display: flex;
             justify-content: center;
-            /* align-items: center; */
+            align-items: center;
             height: 100vh;
+		}
+
+		/* Container for the welcome screen */
+		.welcome-container {
+			background-color: #f0f0f0;
+			width: 400px;
+			border-radius: 15px;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			text-align: center;
+		}
+
+		/* Welcome header styling */
+		.welcome-header {
+			background: linear-gradient(90deg, #ff5f57, #ff8a65);
+			padding: 20px;
+			border-radius: 15px;
+			color: white;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: left;
+			/* text-transform: uppercase; */
 		}
 
 		.runlegend {
 			display: flex;
-			padding:10px
-			width:400px;
+			justify-content:space-between;
+			/* padding:0px; */
+			/* width: 400px; */
 			font-family: Arial, sans-serif;
-			margin:10px
+			/* margin:10px */
 		}
 
 		.runlegendItem {
@@ -28,7 +51,7 @@
 			color:white;
 			padding:3px;
 			border-radius:10px;
-			min-width: 80px;
+			min-width: 70px;
 			background-color: #e53935;
 			margin:10px;
 		}
@@ -43,10 +66,10 @@
 			border-style: solid;
 			border-width: 1px;
 			padding: 10px;
-			width: 400px;
+			/* width: 400px; */
 			gap: 10px;
 			font-family: Arial, sans-serif;
-			margin:10px;
+			margin-bottom:10px;
 		}
 
 		.item {
@@ -55,8 +78,9 @@
 			padding: 10px;
 			text-align: center;
 			flex: 1;
-			min-width: 80px;
+			min-width: 75px;
 			color:white;
+			justify-content : center;
 		}
 
 		.item-large {
@@ -131,24 +155,85 @@
 			margin-left: 50px;
 		}
 
+		.button-row {
+			display:flex;
+			flex-direction:row;
+			justify-content: space-between;
+		}
+
+		/* Submit button styling */
+		.btn {
+			width: 20%;
+			padding: 15px;
+			background-color: #999999;
+			color: #ff2652;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			border-color: gray;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 25px;
+			cursor: pointer;
+			margin-top:20px;
+		}
+
+		.btn:hover {
+			background-color: #d32f2f;
+		}
+
+        .homeButton {
+			background-color:#999999;
+			width : 50px;
+			height : 50px;
+			border-radius: 25px;
+			text-align:center;
+			border-color: gray;
+			border-style: solid;
+			border-width: 1px;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+		}
+
+		.homeIcon {
+			width:30px;
+		}
+
+		.newIcon {
+			width:40px;
+		}
+
+		p {
+			color:grey;
+
+		}
 		
 	</style>
 	
 
-	{# <div class="welcome-container"> #}
-		<div class='btnContainer'>
-			<div class="homebtn">
-				<a href="{{ path('app_welcome')}}">🏠</a>
-			<div>
-
-			<div class="createRunBtn">
-				<a href="{{ path ('create_activity') }}">Add new run</a>
+	<div class="welcome-container">
+		<div class="welcome-header">
+			<div class="button-row">
+				<button class="homeButton">
+					<a href="{{ path('app_welcome')}}">
+						<img class="homeIcon" src="{{ asset('pubimages/home-2.svg') }}" alt = "Go to Homescreen">
+					</a>
+				</button>
+				<button class="homeButton">
+					<a href="{{ path ('create_activity') }}">
+						<img class="newIcon" src="{{ asset('pubimages/plus.svg') }}" alt = "Enter a new Run">
+					</a>
+				</button>
+				<button class="homeButton">
+					<a href="{{ path ('search_activities') }}">
+						<img class="homeIcon" src="{{ asset('pubimages/line-chart.svg') }}" alt = "Run Stats">
+					</a>
+				</button>
 			</div>
-
-			<div class="runStatsBtn">
-				<a href="{{ path ('search_activities') }}">Run Statistics</a>
-			</div>
+			<h2>RUN LIST</h2>
 		</div>
+
 
 		<div class="runlegend">
 			<div class="runlegendItem">Date</div>
@@ -181,8 +266,8 @@
 					{{activity.activityNote }}
 				</div>
 			</div>
-		{# </div> #}
+
 
 	{% endfor %}
-
+	</div>
 {% endblock %}

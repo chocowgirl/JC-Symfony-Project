@@ -3,26 +3,48 @@
 {% block title %}Shoe Manager{% endblock %}
 
 {% block body %}
-Shoe manager
 
 <style>
 	
 	/* General styling for the body */
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
-        /* display: flex; */
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+	body{
+		/* font-family: Arial, sans-serif;
+		background-color: #f0f0f0; */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100vh;
+	}
+
+	/* Container for the welcome screen */
+	.welcome-container {
+		background-color: #f0f0f0;
+		width: 400px;
+		border-radius: 15px;
+		padding: 20px;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		text-align: center;
+	}
+
+	/* Welcome header styling */
+	.welcome-header {
+		background: linear-gradient(90deg, #ff5f57, #ff8a65);
+		padding: 20px;
+		border-radius: 15px;
+		color: white;
+		font-size: 24px;
+		font-weight: bold;
+		text-align: left;
+		/* text-transform: uppercase; */
+	}
 
 	.shoelegend {
 		display: flex;
-		padding:10px
-		width:400px;
+		justify-content:space-between;
+		/* padding:10px
+		width:400px; */
 		font-family: Arial, sans-serif;
-		margin:10px
+		/* margin:10px */
 	}
 
 	.shoelegendItem {
@@ -30,13 +52,14 @@ Shoe manager
 		color:white;
 		padding:3px;
 		border-radius:10px;
-		min-width: 80px;
+		min-width: 70px;
 		background-color: #e53935;
 		margin:10px;
 	}
 	
 	.container {
 		display: flex;
+		/* flex:1; */
 		flex-wrap: wrap;
 		background-color: #f0f0f0;
 		border-radius: 15px;
@@ -44,10 +67,10 @@ Shoe manager
 		border-style: solid;
 		border-width: 1px;
 		padding: 10px;
-		width: 400px;
+		/* width: 400px; */
 		gap: 10px;
 		font-family: Arial, sans-serif;
-		margin:10px;
+		margin-bottom:10px;
 	}
 
 	.overused-container{
@@ -59,10 +82,10 @@ Shoe manager
 		border-style: solid;
 		border-width: 1px;
 		padding: 10px;
-		width: 400px;
+		/* width: 400px; */
 		gap: 10px;
 		font-family: Arial, sans-serif;
-		margin:10px;
+		margin-bottom:10px;
 	}
 
 	.item {
@@ -71,7 +94,7 @@ Shoe manager
 		padding: 10px;
 		text-align: center;
 		flex: 1;
-		min-width: 80px;
+		min-width: 70px;
 		color:white;
 	}
 
@@ -81,7 +104,7 @@ Shoe manager
 		padding: 10px;
 		text-align: center;
 		flex: 1;
-		min-width: 80px;
+		min-width: 70px;
 		color:white;
 	}
 
@@ -91,7 +114,7 @@ Shoe manager
 		padding: 10px;
 		text-align: center;
 		flex: 1;
-		min-width: 80px;
+		min-width: 70px;
 		color:#b30909;
 		font-weight: bold;
 	}
@@ -154,83 +177,121 @@ Shoe manager
 		border-width: 1px;
 	}
 
-		.createShoeBtn {
-			background-color: #a0a0a0;
-			border-radius: 10px;
-			border-color: dark-gray;
-			border-style: solid;
-			border-width: 1px;
-			padding: 5px;
-			text-align: center;
-			min-width: 90px;
-			margin-left: 50px;
-		}
+	.homeButton {
+		background-color:#999999;
+		width : 50px;
+		height : 50px;
+		border-radius: 25px;
+		text-align:center;
+		border-color: gray;
+		border-style: solid;
+		border-width: 1px;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+
+	.homeIcon {
+		width:30px;
+	}
+
+	.newIcon {
+		width:40px;
+	}
+
+	p {
+		color:grey;
+	}
+
+	.createShoeBtn {
+		background-color: #a0a0a0;
+		border-radius: 10px;
+		border-color: dark-gray;
+		border-style: solid;
+		border-width: 1px;
+		padding: 5px;
+		text-align: center;
+		min-width: 90px;
+		margin-left: 50px;
+	}
+
+	.button-row {
+		display:flex;
+		flex-direction:row;
+		justify-content: space-between;
+	}
 
 </style>
-
-	<div class='btnContainer'>
-		<div class="homebtn">
-			<a href="{{ path('app_welcome')}}">🏠</a>
-		<div>
-		
-		<div class="createShoeBtn">
-			<a href="{{ path ('create_shoe') }}">Add new shoes</a>
+	<div class="welcome-container">
+		<div class="welcome-header">
+			<div class="button-row">
+				<button class="homeButton">
+					<a href="{{ path('app_welcome')}}">
+						<img class="homeIcon" src="{{ asset('pubimages/home-2.svg') }}" alt = "Go to Homescreen">
+					</a>
+				</button>
+				<button class="homeButton">
+					<a href="{{ path ('create_shoe') }}">
+						<img class="newIcon" src="{{ asset('pubimages/plus.svg') }}" alt = "Add Shoes">
+					</a>
+				</button>
+			</div>
+			<h2>SHOE LIST</h2>
 		</div>
-	</div>
 
-	<div class="shoelegend">
-		<div class="shoelegendItem">Shoe</div>
-		<div class="shoelegendItem">Km used</div>
-		<div class="shoelegendItem">Status</div>
-		<div class="shoelegendItem">Edit</div>
-	</div>
-	
-	{% for shoe in shoes %}
-		{% if shoe.inActiveService == true %}
-			<div class="container {% if shoe.currentWearKm > shoe.wearLimitKm %}overused-container{% endif %}">
-				<div class="item-large">
-					{{ shoe.nameBrandModel}}
+		<div class="shoelegend">
+			<div class="shoelegendItem">Shoe</div>
+			<div class="shoelegendItem">Km used</div>
+			<div class="shoelegendItem">Status</div>
+			<div class="shoelegendItem">Edit</div>
+		</div>
+		
+		{% for shoe in shoes %}
+			{% if shoe.inActiveService == true %}
+				<div class="container {% if shoe.currentWearKm > shoe.wearLimitKm %}overused-container{% endif %}">
+					<div class="item-large">
+						{{ shoe.nameBrandModel}}
+					</div>
+					<div class="km-item {% if shoe.currentWearKm > shoe.wearLimitKm %}overused-km-item{% endif %}">
+						{{ shoe.currentWearKm }}
+					</div>
+					<div class="item">
+						{{ shoe.inActiveService }}
+					</div>
+					{# {{ dump (activity.shoepairUsed)}} #}
+					{# {{ dump (activity.activityDate)}} #}
+					<div class="edit-button">
+						<a href="{{ path('update_shoe', {id: shoe.id} )}}">{% if shoe.currentWearKm > shoe.wearLimitKm %}retire{%else%}edit{% endif %}</a>
+					</div>
+					<div class="notes">
+						{% if shoe.currentWearKm > shoe.wearLimitKm %}<span class="over-wear-limit">SHOE IS OVER DEFINED WEAR LIMIT</span>{% endif %}
+						{{shoe.shoeNote }}
+					</div>
 				</div>
-				<div class="km-item {% if shoe.currentWearKm > shoe.wearLimitKm %}overused-km-item{% endif %}">
+			{% endif %}
+
+		{% endfor %}
+
+		{% for shoe in shoes %}
+		{% if shoe.inActiveService == false %}
+			<div class="container">
+				<div class="item-large">
+					{{ shoe.nameBrandModel }}
+				</div>
+				<div class="item">
 					{{ shoe.currentWearKm }}
 				</div>
 				<div class="item">
 					{{ shoe.inActiveService }}
 				</div>
-				{# {{ dump (activity.shoepairUsed)}} #}
-				{# {{ dump (activity.activityDate)}} #}
 				<div class="edit-button">
-					<a href="{{ path('update_shoe', {id: shoe.id} )}}">{% if shoe.currentWearKm > shoe.wearLimitKm %}retire{%else%}edit{% endif %}</a>
+					<a href="{{ path('update_shoe', {id: shoe.id}) }}">edit</a>
 				</div>
 				<div class="notes">
-					{% if shoe.currentWearKm > shoe.wearLimitKm %}<span class="over-wear-limit">SHOE IS OVER DEFINED WEAR LIMIT</span>{% endif %}
-					{{shoe.shoeNote }}
+					{{ shoe.shoeNote }}
 				</div>
 			</div>
 		{% endif %}
-
 	{% endfor %}
-
-	{% for shoe in shoes %}
-    {% if shoe.inActiveService == false %}
-        <div class="container">
-            <div class="item-large">
-                {{ shoe.nameBrandModel }}
-            </div>
-            <div class="item">
-                {{ shoe.currentWearKm }}
-            </div>
-            <div class="item">
-                {{ shoe.inActiveService }}
-            </div>
-            <div class="edit-button">
-                <a href="{{ path('update_shoe', {id: shoe.id}) }}">edit</a>
-            </div>
-            <div class="notes">
-                {{ shoe.shoeNote }}
-            </div>
-        </div>
-    {% endif %}
-{% endfor %}
-
+	</div>
 {% endblock %}

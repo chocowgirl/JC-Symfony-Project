@@ -348,6 +348,8 @@ class RunManagerController extends AbstractController
         return $this->render('run_manager/stats_runs.html.twig', [
             'form' => $form->createView(),
             // 'activities' => $activities,
+            // 'startDate' => $startDate,
+            // 'endDate' => $endDate,
             'totalRuns' => $totalRuns,
             'totalDistance' => $totalDistance,
             'averageDistance' => $averageDistance,

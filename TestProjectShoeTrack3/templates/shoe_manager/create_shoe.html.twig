@@ -3,10 +3,72 @@
 
 {% block body %}
 
-Add new shoe
-
 	<style>
-        .homebtn {
+        body {
+            /* font-family: Arial, sans-serif; */
+            /* background-color: #f0f0f0; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+		/* Container for the welcome screen */
+		.welcome-container {
+			background-color: #f0f0f0;
+			width: 400px;
+			border-radius: 15px;
+			padding: 20px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			text-align: center;
+		}
+
+		/* Welcome header styling */
+		.welcome-header {
+			background: linear-gradient(90deg, #ff5f57, #ff8a65);
+			padding: 20px;
+			border-radius: 15px;
+			color: white;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: left;
+			/* text-transform: uppercase; */
+		}
+
+        form {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			background-color: #e0e0e0;
+			border-radius: 10px;
+			padding: 20px;
+			max-width: 400px;
+			margin: 0 auto;
+        }
+
+        /* Input fields and labels */
+        label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+        }
+
+		textarea {
+			height: 100px;
+		}
+
+		input, textarea, select {
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 15px;
+			border-radius: 10px;
+			border: 1px solid #ccc;
+			background-color: #fff;
+			font-size: 16px;
+			text-align: center;
+		}
+
+        /* .homebtn {
 			background-color:#a0a0a0;
 			width : 30px;
 			height : 30px;
@@ -15,23 +77,71 @@ Add new shoe
 			border-color: dark-gray;
 			border-style: solid;
 			border-width: 1px;
+		} */
+
+	    .homeButton {
+			background-color:#999999;
+			width : 50px;
+			height : 50px;
+			border-radius: 25px;
+			text-align:center;
+			border-color: dark-gray;
+			border-style: solid;
+			border-width: 1px;
 		}
+
+		.homeIcon {
+			width:30px;
+		}
+
+		p {
+			color:grey;
+		}
+
+
+		/* Submit button styling */
+		.btn {
+			width: 100%;
+			padding: 15px;
+			background-color: #e53935;
+			color: white;
+			font-size: 18px;
+			font-weight: bold;
+			text-align: center;
+			border: none;
+			border-radius: 25px;
+			cursor: pointer;
+			margin-top:20px;
+		}
+
+		.btn:hover {
+			background-color: #d32f2f;
+		}
+
+
 	</style>
 
+<div class="welcome-container">
+    <div class="welcome-header">
+		<button class="homeButton">
+			<a href="{{ path('app_welcome')}}">
+				<img class="homeIcon" src="{{ asset('pubimages/home-2.svg') }}" alt = "Go to Homescreen">
+			</a>
+		</button>
+		<h2>ADD NEW SHOES</h2>
+	</div>
+	{{ form_start (form) }}
+	{{ form_widget (form) }}
 
 
-{{ form_start (form) }}
-{{ form_widget (form) }}
 
 
 
+	<input type="submit" class="btn" value="Envoyer" />
+	{{ form_end (form) }}
 
-
-<input type="submit" class="btn" value="Envoyer" />
-{{ form_end (form) }}
-
-	<div class="homebtn">
-		<a href="{{ path('app_welcome')}}">🏠</a>
-	<div>
-
+		{# <div class="homebtn">
+			<a href="{{ path('app_welcome')}}">🏠</a>
+		<div> #}
+</div>
 {% endblock %}
