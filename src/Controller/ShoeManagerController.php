@@ -39,6 +39,7 @@ class ShoeManagerController extends AbstractController
         // on obtient d'abord le shoepair
         $shoepair = $rep->find($req->get('id'));
         // $userOwner = $this->getUser();
+        // dd($shoepair);
         $form = $this->createForm(
             ShoepairType::class,
             $shoepair,
@@ -79,6 +80,8 @@ class ShoeManagerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // dd();
             $doctrine->getManager()->persist($shoepair);
+            $shoepair->setUserOwner($this->getUser());
+            // dd($shoepair);
             $doctrine->getManager()->flush();
 
             return $this->redirectToRoute("app_shoe_manager");

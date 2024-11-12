@@ -165,14 +165,14 @@ class RunManagerController extends AbstractController
 
         // we first create the run
         $activity = new Activity();
-
+        $activity -> setUser($this->getUser());
         $form = $this->createForm(ActivityType::class, $activity);
         //do I need to pass through the user?
         $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $doctrine->getManager();
-            
+
             // Get the shoepair used in the activity
             /** @var Shoepair $shoepair */
             $shoepair = $activity->getShoepairUsed();

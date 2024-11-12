@@ -37,16 +37,16 @@ class ActivityType extends AbstractType
             ->add('activityDistanceKm')
             ->add('activityNote')
             ->add('activityChronoMin')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'name',
-                'query_builder'=> function(UserRepository $er) use ($user){
-                    return $er->createQueryBuilder('s')
-                    ->where('s.id = :connectedUser')
-                    ->setParameter('connectedUser', $user);
-                }
+            // ->add('user', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'name',
+            //     'query_builder'=> function(UserRepository $er) use ($user){
+            //         return $er->createQueryBuilder('s')
+            //         ->where('s.id = :connectedUser')
+            //         ->setParameter('connectedUser', $user);
+            //     }
 
-            ])
+            // ])
             ->add('shoepairUsed', EntityType::class, [
                 'class' => Shoepair::class,
                 'choice_label' => 'nameBrandModel',

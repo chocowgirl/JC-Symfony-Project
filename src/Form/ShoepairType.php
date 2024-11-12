@@ -34,16 +34,17 @@ class ShoepairType extends AbstractType
             ->add('currentWearKm')
             ->add('shoeNote')
             ->add('inActiveService')
-            ->add('userOwner', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'name',
-                'query_builder'=> function(UserRepository $er) use ($user){
-                    return $er->createQueryBuilder('s')
-                    ->where('s.id = :connectedUser')
-                    ->setParameter('connectedUser', $user);
-                }
+            // traitement owner dans controller
+            // ->add('userOwner', EntityType::class, [
+            //     'class' => User::class,
+            //     'choice_label' => 'name',
+            //     'query_builder'=> function(UserRepository $er) use ($user){
+            //         return $er->createQueryBuilder('s')
+            //         ->where('s.id = :connectedUser')
+            //         ->setParameter('connectedUser', $user);
+            //     }
 
-            ])
+            // ])
 
         ;
     }
